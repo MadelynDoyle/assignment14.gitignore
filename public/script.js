@@ -15,6 +15,7 @@ const showBooks = async () => {
                 const section = document.createElement("div");
                 section.classList.add("book");
 
+
                 const img = document.createElement("img");
                 img.src = book.img;
                 img.classList.add("book-image");
