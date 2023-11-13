@@ -1,6 +1,6 @@
 const getBooks = async () => {
     try {
-      return (await fetch("api/recipes/")).json();
+      return (await fetch("api/books/")).json();
     } catch (error) {
       console.log(error);
     }
@@ -57,7 +57,7 @@ const showBooks = async () => {
   
 
   window.onload = () => {
-    showRecipes();
+    showBooks();
     document.getElementById("book-form").onsubmit = addEditRecipe;
     document.getElementById("add-book-container").onclick = showHideAdd;
   
