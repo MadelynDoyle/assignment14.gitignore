@@ -16,7 +16,7 @@ server.get("/api/books", (req, res) => {
         title: "Heir Of Fire",
         author: "Sarah J Maas",
         genre: "Fantasy",
-        img: "/images/heiroffire.jpg",
+        img: "/images/heiroffire.JPG",
         rating: "9/10",
         maincharacters: ["Aelin","Rowan", "Manon", "Dorian"]
     };
@@ -24,7 +24,7 @@ server.get("/api/books", (req, res) => {
         title: "Queen Of Shadows",
         author: "Sarah J Maas",
         genre: "Fantasy",
-        img: "/images/queenofshadows.jpg",
+        img: "/images/queenofshadows.JPG",
         rating: "6/10",
         maincharacters: ["Aelin","Rowan", "Manon", "Dorian"]
     };
@@ -32,7 +32,7 @@ server.get("/api/books", (req, res) => {
         title: "Empire Of Storms",
         author: "Sarah J Maas",
         genre: "Fantasy",
-        img: "/images/empireofstorms.jpg",
+        img: "/images/empireofstorms.JPG",
         rating: "7/10",
         maincharacters: ["Aelin","Rowan", "Manon", "Dorian"]
     };
@@ -40,7 +40,7 @@ server.get("/api/books", (req, res) => {
         title: "Kingdom of Ash",
         author: "Sarah J Maas",
         genre: "Fantasy",
-        img: "/images/kingdomofash.jpg",
+        img: "/images/kingdomofash.JPG",
         rating: "8/10",
         maincharacters: ["Aelin","Rowan", "Manon", "Dorian"]
     };
@@ -48,7 +48,7 @@ server.get("/api/books", (req, res) => {
         title: "Fourth Wing",
         author: "Rebecca Yarros",
         genre: "Fantasy",
-        img: "/images/fourthwing.jpg",
+        img: "/images/fourthwing.JPG",
         rating: "9/10",
         maincharacters: ["Violet","Xaden", "Tairn", "Liam"]
     };
