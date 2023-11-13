@@ -12,6 +12,7 @@
         <div id="book-overview"></div>
         <div class="book-container" id="bookContainer"></div>
         <div id="add-book-container" class="transparent">
+            <span class="close" onclick="hideAddBook()">×</span>
             <h3>Add a Book!</h3>
             <form id="book-form" method="post">
                 <p>
@@ -45,7 +46,7 @@
                 </p>
 
                 <p>
-                    <button type="submit">Add Book</button>
+                    <button type="button" onclick="addBook()">Add Book</button>
                 </p>
             </form>
         </div>
