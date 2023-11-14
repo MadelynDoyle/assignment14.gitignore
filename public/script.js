@@ -17,7 +17,7 @@ const showBooks = async () => {
 
 
                 const img = document.createElement("img");
-                img.src = "https://assignment14pt2.onrender.com" + book.img;
+                img.src = /*"https://assignment14pt2.onrender.com"*/ book.img;
                 img.classList.add("book-image");
                 section.appendChild(img);
 
@@ -118,6 +118,5 @@ window.onload = () => {
       hideAddBook();
     };
     document.getElementById("add-book").onclick = showAddBook;
-    document.getElementById("add-book-container").onclick = hideAddBook;
     document.querySelector(".close").onclick = hideAddBook;
 };
