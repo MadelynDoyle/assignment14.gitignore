@@ -17,7 +17,7 @@ const showBooks = async () => {
 
 
                 const img = document.createElement("img");
-                img.src = /*"https://assignment14pt2.onrender.com"*/ book.img;
+                img.src = book.img;
                 img.classList.add("book-image");
                 section.appendChild(img);
 
