@@ -73,7 +73,7 @@ const addBook = async () => {
   const formData = new FormData(form);
   let response;
 
-  if (form._id.value == -1) {
+  if (form.title.value == -1) {
       formData.delete("title");
       formData.delete("img");
       formData.append("maincharacter", getMainCharacter());
