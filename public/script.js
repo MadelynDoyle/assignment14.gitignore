@@ -53,50 +53,47 @@ const showBooks = async () => {
     } catch (error) {
         console.log("Error retrieving or displaying books:", error);
     }
+    eLink.onclick = (e) => {
+      e.preventDefault();
+      document.querySelector(".dialog").classList.remove("transparent");
+      document.getElementById("add-edit-title").innerHTML = "Edit Recipe";
+    };
+
+    dLink.onclick = (e) => {
+      e.preventDefault();
+    };
+    populateEditForm(book);
 };
 
+const populateEditForm = (book) => {};
+
 const addBook = async () => {
-    try {
-  
-        const title = document.querySelector('#book-form input[name="title"]').value;
-        const author = document.querySelector('#book-form input[name="author"]').value;
-        const genre = document.querySelector('#book-form input[name="genre"]').value;
-        const img = document.querySelector('#book-form input[name="img"]').value; // Update this based on your form structure
-        const rating = document.querySelector('#book-form input[name="rating"]').value;
-        const maincharacters = document.querySelector('#book-form input[name="maincharacters"]').value.split(',').map(str => str.trim());
+  e.preventDefault();
+  const form = document.getElementById("add-book-container");
+  const formData = new FormData(form);
+  let response;
 
-        if (!title || !author || !genre || !img || !rating || !maincharacters) {
-          alert('Please fill in all required fields.');
-          return;
-        }
-    
+  if (form._id.value == -1) {
+      formData.delete("title");
+      formData.delete("img");
+      formData.append("maincharacter", getMainCharacter());
 
-        const response = await fetch("/api/books", {
+      console.log(...formData);
+
+      response = await fetch("/api/books", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title,
-            author,
-            genre,
-            img,
-            rating,
-            maincharacters,
-          }),
-        });
-    
-        if (response.ok) {
-          showBooks();
-        } else {
-          alert('Failed to add the book. Please try again.');
-        }
-    
-      } catch (error) {
-        console.error("Error adding book:", error);
-      } finally {
-        hideAddBook(); 
-      }
+          body: formData
+      });
+  }
+
+    if (response.status != 200) {
+        console.log("Error posting data");
+    }
+
+    response = await response.json();
+    resetForm();
+    document.querySelector(".dialog").classList.add("transparent");
+    showRecipes();
   };
   const showAddBook = () => {
     console.log("Showing add book form");
