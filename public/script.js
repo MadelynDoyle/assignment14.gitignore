@@ -53,16 +53,6 @@ const showBooks = async () => {
     } catch (error) {
         console.log("Error retrieving or displaying books:", error);
     }
-    eLink.onclick = (e) => {
-      e.preventDefault();
-      document.querySelector(".dialog").classList.remove("transparent");
-      document.getElementById("add-edit-title").innerHTML = "Edit Recipe";
-    };
-
-    dLink.onclick = (e) => {
-      e.preventDefault();
-    };
-    populateEditForm(book);
 };
 
 const populateEditForm = (book) => {};
