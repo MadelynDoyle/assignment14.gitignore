@@ -1,3 +1,4 @@
+
 const getBooks = async () => {
     try {
       return (await fetch("api/books/")).json();
@@ -55,36 +56,90 @@ const showBooks = async () => {
     }
 };
 
-const populateEditForm = (book) => {};
 
-const addBook = async () => {
+
+const addBook = async (e) => {
   e.preventDefault();
-  const form = document.getElementById("add-book-container");
+  const form = document.getElementById("book-form");
   const formData = new FormData(form);
   let response;
 
   if (form.title.value == -1) {
-      formData.delete("title");
-      formData.delete("img");
-      formData.append("maincharacter", getMainCharacter());
+    formData.delete("title");
+
+    response = await fetch("/api/books", {
+        method: "POST",
+        body: formData
+    });
+  }
+
+  else {
 
       console.log(...formData);
 
-      response = await fetch("/api/books", {
-          method: "POST",
+      response = await fetch(`/api/books/${form.title.value}`, {
+          method: "PUT",
           body: formData
       });
   }
 
+  if (response.status != 200) {
+      console.log("Error posting data");
+  }
+
+  book = await response.json();
+
+  if (form.title.value != -1) {
+      showBooks(book);
+  }
+
+  resetForm();
+  document.querySelector(".dialog").classList.add("transparent");
+  showBooks();
+};
+
+const resetForm = () => {
+  const form = document.getElementById("book-form");
+  form.reset();
+  form.title = "-1";
+};
+
+  const getMainCharacters = () => {
+    const inputs = document.querySelectorAll("#book-container");
+    let maincharacter = [];
+
+    inputs.forEach((input) => {
+        maincharacter.push(input.value);
+    });
+
+    return maincharacter;
+}
+  const populateBookEditForm = (book) => {
+    const form = document.getElementById("book-form");
+    form.title.value = book.title;
+    form.author.value = book.author;
+    form.rating.value = book.rating;
+    form.maincharacter.value = book.maincharacter;
+  };
+
+  const deleteBook = async(book) => {
+    let response = await fetch(`/api/books/${book.title}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        }
+    });
+
     if (response.status != 200) {
-        console.log("Error posting data");
+        console.log("error deleting");
+        return;
     }
 
-    response = await response.json();
+    let result = await response.json();
+    showBooks();
+    document.getElementById("book-container").innerHTML = "";
     resetForm();
-    document.querySelector(".dialog").classList.add("transparent");
-    showRecipes();
-  };
+}
   const showAddBook = () => {
     console.log("Showing add book form");
     document.getElementById("add-book-container").classList.remove("transparent");
