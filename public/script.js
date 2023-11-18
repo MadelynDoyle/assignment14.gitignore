@@ -6,6 +6,7 @@ const getBooks = async () => {
       console.log(error);
     }
   };
+
 const showBooks = async () => {
     try {
         const booksJSON = await getBooks();
@@ -90,11 +91,15 @@ const addBook = async (e) => {
     showBooks(book);
   }
 
-  resetForm();
+  resetBookForm();
   document.querySelector(".dialog").classList.add("transparent");
   showBooks();
 };
-
+const resetBookForm = () => {
+  const form = document.getElementById("book-form");
+  form.reset();
+  form.title.value = "";
+};
 const resetForm = () => {
   const form = document.getElementById("book-form");
   form.reset();
