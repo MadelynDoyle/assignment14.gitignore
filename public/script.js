@@ -64,33 +64,30 @@ const addBook = async (e) => {
   const formData = new FormData(form);
   let response;
 
-  if (form.title.value == -1) {
+  if (form.title.value === "") {
     formData.delete("title");
 
     response = await fetch("/api/books", {
-        method: "POST",
-        body: formData
+      method: "POST",
+      body: formData,
+    });
+  } else {
+    console.log(...formData);
+
+    response = await fetch(`/api/books/${form.title.value}`, {
+      method: "PUT",
+      body: formData,
     });
   }
 
-  else {
-
-      console.log(...formData);
-
-      response = await fetch(`/api/books/${form.title.value}`, {
-          method: "PUT",
-          body: formData
-      });
+  if (response.status !== 200) {
+    console.log("Error posting data");
   }
 
-  if (response.status != 200) {
-      console.log("Error posting data");
-  }
+  const book = await response.json();
 
-  book = await response.json();
-
-  if (form.title.value != -1) {
-      showBooks(book);
+  if (form.title.value !== "") {
+    showBooks(book);
   }
 
   resetForm();
@@ -101,8 +98,9 @@ const addBook = async (e) => {
 const resetForm = () => {
   const form = document.getElementById("book-form");
   form.reset();
-  form.title = "-1";
+  form.title.value = "";
 };
+
 
   const getMainCharacters = () => {
     const inputs = document.querySelectorAll("#book-container");
