@@ -17,17 +17,17 @@
             <form id="book-form" method="post">
                 <p>
                     <label for="title ">Book Title:</label>
-                    <input type="text"/>
+                    <input type="text" name="title"/>
                 </p>
 
                 <p>
                     <label for="author ">Author:</label>
-                    <input type="text"/>
+                    <input type="text" name="author"/>
                 </p>
         
                 <p>
                     <label for="genre ">Genre:</label>
-                    <input type="text"/>
+                    <input type="text" name="genre"/>
                 </p>
 
                 <p>
@@ -37,16 +37,16 @@
 
                 <p>
                     <label for="rating ">Rating:</label>
-                    <input type="text"/>
+                    <input type="text" name="rating"/>
                 </p>
 
                 <p id="maincharacter-add">
                     <label class="inline">Main Characters:</label>
-                    <input type="text"/>
+                    <input type="text" name="maincharacters"/>
                 </p>
 
                 <p>
-                    <button type="button" onclick="addBook()">Add Book</button>
+                    <button type="submit">Add Book</button>
                 </p>
             </form>
         </div>
