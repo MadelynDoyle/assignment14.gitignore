@@ -6,17 +6,18 @@ server.use(express.json());
 const cors = require("cors");
 server.use(cors());
 const multer = require("multer");
+const mongoose = require("mongoose");
 
 const upload = multer({ dest: __dirname + "/public/images" });
 
 mongoose
   .connect(
-    //"mongodb+srv://portiaportia:EyHXaKhndBmhv5Sa@data.ng58qmq.mongodb.net/"
+    "mongodb+srv://doylemr:mongopassword@cluster0.afz2cbd.mongodb.net/?retryWrites=true&w=majority"
   )
   .then(() => console.log("Connected to mongodb..."))
   .catch((err) => console.error("could not connect ot mongodb...", err));
 
-app.get("/", (req, res) => {
+server.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
@@ -29,7 +30,7 @@ const bookSchema = new mongoose.Schema({
     img: String,
   });
 
-  const Book = mongoose.model("Book", recipeSchema);
+  const Book = mongoose.model("Book", bookSchema);
 
   server.get("/api/books", (req, res) => {
     getBooks(res);

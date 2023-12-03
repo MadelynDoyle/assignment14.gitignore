@@ -57,7 +57,7 @@ const getBooks = async () => {
 };*/
 const showBooks = async() => {
   let books = await getBooks();
-  let booksDiv = document.getElementById("recipe-list");
+  let booksDiv = document.getElementById("book-container"); //chande
   recipesDiv.innerHTML = "";
   books.forEach((book) => {
       const section = document.createElement("section");
@@ -219,7 +219,7 @@ const resetForm = () => {
   };
 
   const populateEditForm = (book) => {
-    const form = document.getElementById("add-edit-recipe-form"); //fix id
+    const form = document.getElementById("add-book-container"); //fix id
     form.title.value = book.title;
     form.author.value = book.author;
     form.genre.value = book.genre;
@@ -229,7 +229,7 @@ const resetForm = () => {
 
   const addEditRecipe = async (e) => {
     e.preventDefault();
-    const form = document.getElementById("add-edit-recipe-form"); //fix id
+    const form = document.getElementById("add-book-container"); //fix id
     const formData = new FormData(form);
     let response;
     formData.append("main characters", getMainCharacters());
